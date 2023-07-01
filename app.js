@@ -3,6 +3,7 @@ const resizeBtn = document.getElementById("resize");
 const clearBtn = document.getElementById("clear");
 const rainbowBtn = document.getElementById("rainbow");
 const blackBtn = document.getElementById("black");
+const eraseBtn = document.getElementById("erase");
 
 const containerSize = divContainer.clientWidth;
 const num = 16;
@@ -92,22 +93,43 @@ rainbowBtn.onclick = () => {
 blackBtn.onclick = () => {
     let divs = document.querySelectorAll(".grid-item");
     divs.forEach((div) => {
-      div.addEventListener("mousedown", () => {
-        isDrawing = true;
-        div.style.backgroundColor = "black";
-      });
-  
-      div.addEventListener("mousemove", () => {
-        if (isDrawing) {
-          div.style.backgroundColor = "black";
-        }
-      });
-  
-      div.addEventListener("mouseup", () => {
-        isDrawing = false;
-      });
+        div.addEventListener("mousedown", () => {
+            isDrawing = true;
+            div.style.backgroundColor = "black";
+        });
+
+        div.addEventListener("mousemove", () => {
+            if (isDrawing) {
+                div.style.backgroundColor = "black";
+            }
+        });
+
+        div.addEventListener("mouseup", () => {
+            isDrawing = false;
+        });
     });
-  };
+};
+
+
+eraseBtn.onclick = () => {
+    let divs = document.querySelectorAll(".grid-item");
+    divs.forEach((div) => {
+        div.addEventListener("mousedown", () => {
+            isDrawing = true;
+            div.style.backgroundColor = "white";
+        });
+
+        div.addEventListener("mousemove", () => {
+            if (isDrawing) {
+                div.style.backgroundColor = "white";
+            }
+        });
+
+        div.addEventListener("mouseup", () => {
+            isDrawing = false;
+        });
+    });
+};
 
 
 makeDivs(num, itemSize);

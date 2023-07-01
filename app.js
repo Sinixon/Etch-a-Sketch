@@ -1,5 +1,6 @@
 const divContainer = document.getElementById("grid-container");
 const resizeBtn = document.getElementById("resize");
+const clearBtn = document.getElementById("clear");
 
 const containerSize = divContainer.clientWidth;
 const num = 16;
@@ -14,11 +15,26 @@ function makeDivs(num, itemSize) {
     for (let i = 0; i < num * num; i++) {
         const div = document.createElement("div");
         divContainer.appendChild(div).className = "grid-item";
+
+        div.addEventListener("mousedown", () => {
+            isDrawing = true;
+            div.style.backgroundColor = "black";
+        });
+
+        div.addEventListener("mousemove", () => {
+            if (isDrawing) {
+                div.style.backgroundColor = "black";
+            }
+        });
+
+        div.addEventListener("mouseup", () => {
+            isDrawing = false;
+        });
     }
 }
 
 resizeBtn.onclick = () => {
-    const gridSize = parseInt(prompt("Enter the desired grid size:"));
+    const gridSize = parseInt(prompt("Enter the desired grid size (100 max) :"));
 
     if (!isNaN(gridSize) && gridSize > 0 && gridSize <= 100) {
         const itemSize = Math.floor(containerSize / gridSize);
@@ -35,5 +51,12 @@ function clearGrid() {
         divContainer.removeChild(divContainer.firstChild);
     }
 }
+
+clearBtn.onclick = () => {
+    let divs = document.querySelectorAll(".grid-item");
+    divs.forEach((div) => {
+      div.style.backgroundColor = "white";
+    });
+  };
 
 makeDivs(num, itemSize);

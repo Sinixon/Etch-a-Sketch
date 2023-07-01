@@ -2,6 +2,7 @@ const divContainer = document.getElementById("grid-container");
 const resizeBtn = document.getElementById("resize");
 const clearBtn = document.getElementById("clear");
 const rainbowBtn = document.getElementById("rainbow");
+const blackBtn = document.getElementById("black");
 
 const containerSize = divContainer.clientWidth;
 const num = 16;
@@ -87,6 +88,26 @@ rainbowBtn.onclick = () => {
         });
     });
 };
+
+blackBtn.onclick = () => {
+    let divs = document.querySelectorAll(".grid-item");
+    divs.forEach((div) => {
+      div.addEventListener("mousedown", () => {
+        isDrawing = true;
+        div.style.backgroundColor = "black";
+      });
+  
+      div.addEventListener("mousemove", () => {
+        if (isDrawing) {
+          div.style.backgroundColor = "black";
+        }
+      });
+  
+      div.addEventListener("mouseup", () => {
+        isDrawing = false;
+      });
+    });
+  };
 
 
 makeDivs(num, itemSize);

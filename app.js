@@ -1,6 +1,7 @@
 const divContainer = document.getElementById("grid-container");
 const resizeBtn = document.getElementById("resize");
 const clearBtn = document.getElementById("clear");
+const rainbowBtn = document.getElementById("rainbow");
 
 const containerSize = divContainer.clientWidth;
 const num = 16;
@@ -55,8 +56,37 @@ function clearGrid() {
 clearBtn.onclick = () => {
     let divs = document.querySelectorAll(".grid-item");
     divs.forEach((div) => {
-      div.style.backgroundColor = "white";
+        div.style.backgroundColor = "white";
     });
-  };
+};
+
+rainbowBtn.onclick = () => {
+    let divs = document.querySelectorAll(".grid-item");
+    divs.forEach((div) => {
+        div.addEventListener("mousedown", () => {
+            isDrawing = true;
+            div.style.backgroundColor = `rgb(${Math.floor(
+                Math.random() * 256
+            )}, ${Math.floor(Math.random() * 256)}, ${Math.floor(
+                Math.random() * 256
+            )})`;
+        });
+
+        div.addEventListener("mousemove", () => {
+            if (isDrawing) {
+                div.style.backgroundColor = `rgb(${Math.floor(
+                    Math.random() * 256
+                )}, ${Math.floor(Math.random() * 256)}, ${Math.floor(
+                    Math.random() * 256
+                )})`;
+            }
+        });
+
+        div.addEventListener("mouseup", () => {
+            isDrawing = false;
+        });
+    });
+};
+
 
 makeDivs(num, itemSize);

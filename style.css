@@ -1,0 +1,24 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#grid-container {
+    display: grid;
+    margin: 2rem;
+    width: 512px;
+    height: 512px;
+    overflow: hidden;
+}
+
+.grid-item {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    /* Make each grid item fill the available width */
+    height: 100%;
+    /* Make each grid item fill the available height */
+}
